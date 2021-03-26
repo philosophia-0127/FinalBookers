@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="bg-secondary py-2">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand" href="/"><span class="text-light font-italic h4">Bookers</span></a>
+
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto text-light">
+
+            <% if user_signed_in? %>
+              <li class="nav-item px-2">
+                <%= link_to user_path(current_user.id), class: 'text-light text-decoration-none', method: :get do %>
+                  <div class="home"><span class="fas fa-home mr-1"></span>Home</div>
+                <% end %>
+              </li>
+              <li class="nav-item px-2">
+                <%= link_to users_path, class: 'text-light text-decoration-none', method: :get do %>
+                  <div class="users"><span class="fas fa-users mr-1"></span>Users</div>
+                <% end %>
+              </li>
+              <li class="nav-item px-2">
+                <%= link_to books_path, class: 'text-light text-decoration-none', method: :get do %>
+                  <div class="books"><span class="fas fa-book-open mr-1"></span>Books</div>
+                <% end %>
+              </li>
+              <li class="nav-item px-2">
+                <%= link_to destroy_user_session_path, class: 'text-light text-decoration-none', method: :delete do %>
+                  <div class="logout"><span class="fas fa-sign-out-alt mr-1"></span>logout</div>
+                <% end %>
+              </li>
+            <% else %>
+              <li class="nav-item px-2">
+                <%= link_to root_path, class: 'text-light text-decoration-none', method: :get do %>
+                  <div class="home"><span class="fas fa-home mr-1"></span>Home</div>
+                <% end %>
+              </li>
+              <li class="nav-item px-2">
+                <%= link_to home_about_path, class: 'text-light text-decoration-none', method: :get do %>
+                  <div class="about"><span class="fas fa-link mr-1"></span>About</div>
+                <% end %>
+              </li>
+              <li class="nav-item px-2">
+                <%= link_to new_user_registration_path, class: 'text-light text-decoration-none', method: :get do %>
+                  <div class="sign-up"><span class="fas fa-user-plus mr-1"></span>sign up</div>
+                <% end %>
+              </li>
+              <li class="nav-item px-2">
+                <%= link_to new_user_session_path, class: 'text-light text-decoration-none', method: :get do %>
+                  <div class="login"><span class="fas fa-sign-in-alt mr-1"></span>login</div>
+                <% end %>
+              </li>
+            <% end %>
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <%= yield %>
+  </body>
+</html>

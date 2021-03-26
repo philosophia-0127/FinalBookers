@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-5 mx-auto">
+      <h2>Editing Book</h2>
+
+      <div class="text-danger">
+        <% if @book.errors.any? %>
+          <%= @book.errors.count %>errors prohibited this obj from being saved:
+          <br>
+          <% @book.errors.full_messages.each do |message| %>
+            <%= message %>
+          <% end %>
+        <% end %>
+      </div>
+
+
+      <%= form_with model: @book, local: true do |f| %>
+        <label for="title">Title</label><br>
+        <%= f.text_field :title, autofocus: true %><br>
+        <label for="body">Opinion</label><br>
+        <%= f.text_area :body, autofocus: true %><br>
+        <div class="form-group">
+          <%= f.submit "Update Book", class: "btn btn-success" %>
+        </div>
+      <% end %>
+
+      <%= link_to "Show", book_path(@book.id) %>
+        |
+        <%= link_to "Back", books_path %>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="mx-auto">
+        <p>CopyRight Infratop.inc</p>
+      </div>
+    </div>
+  </div>
+</footer>
